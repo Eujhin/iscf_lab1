@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import Header from '../components/Header'
+import Chart from '../components/Grafico'
+
 export default function Home() {
   return (
     <>
@@ -10,8 +13,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className=''>
-        
+      <main className='bg-gray-100 min-h-screen'>
+        <Header /> 
+        <div className='p-4 grid md:grid-cols-4 grid-cols-1 gap-4'>
+          <Chart />
+        </div>
       </main>
     </>
   )
