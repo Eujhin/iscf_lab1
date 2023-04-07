@@ -30,12 +30,16 @@ const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
-
+let timestampValues = [];
+let xValues = [];
+let yValues = [];
+let zValues = [];
 
 //export {db};
 
 const dbRef = ref(db, '/accel/');
 
+var i = Number(0);
 
 
 
@@ -47,15 +51,56 @@ onValue(dbRef, (snapshot) => {
     const dbRefUtil = ref(db, '/accel/' + childKey); // path + variavel depois accel
     
     const childData = childSnapshot.val(); // valor em si
-    get(child(dbRefUtil, 'x')).then((snapshot) => { // Trocar para variavel desejada
+    get(child(dbRefUtil, 'timestamp')).then((snapshot) => { // Trocar para variavel desejada
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        
+        timestampValues[i] = snapshot.val();
+        console.log(timestampValues[i]);
+        //i++;
       } else {
         console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
     });
+    get(child(dbRefUtil, 'x')).then((snapshot) => { // Trocar para variavel desejada
+      if (snapshot.exists()) {
+        
+        xValues[i] = snapshot.val();
+        console.log(xValues[i]);
+        //i++;
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    get(child(dbRefUtil, 'y')).then((snapshot) => { // Trocar para variavel desejada
+      if (snapshot.exists()) {
+        
+        yValues[i] = snapshot.val();
+        console.log(yValues[i]);
+        //i++;
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    get(child(dbRefUtil, 'z')).then((snapshot) => { // Trocar para variavel desejada
+      if (snapshot.exists()) {
+        
+        zValues[i] = snapshot.val();
+        console.log(zValues[i]);
+        //i++;
+      } else {
+        console.log("No data available");
+      }
+      i++;
+    }).catch((error) => {
+      console.error(error);
+    });
+    
     // ...
   });
 }, {
@@ -63,7 +108,8 @@ onValue(dbRef, (snapshot) => {
 });
 
 
-//export default { db };
+export {timestampValues, xValues, yValues, zValues};
+
 export default function Home() {
   return (
     <>

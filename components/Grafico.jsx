@@ -11,6 +11,7 @@ import {
     Legend,
     Filler,
 } from "chart.js";
+import { timestampValues, xValues, yValues, zValues } from "@/pages/database";
 
 ChartJS.register(
     CategoryScale,
@@ -33,11 +34,11 @@ const Grafico = () => {
 
     useEffect(() =>{
         setChartData({
-            labels: ['Mon', 'Tues'],
+            labels: timestampValues,
             datasets:[
                 {
                     label: 'X',
-                    data: [12341, 23123, 1234, 1234, 1234, 4321],
+                    data: xValues,
                     borderColor: 'rgb(53, 162, 235)',
                     backgroundColor:'rgb(53, 162, 235, 0.4)'
                 },
