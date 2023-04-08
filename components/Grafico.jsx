@@ -39,12 +39,25 @@ const Grafico = () => {
                 {
                     label: 'X',
                     data: xValues,
-                    borderColor: 'rgb(53, 162, 235)',
-                    backgroundColor:'rgb(53, 162, 235, 0.4)'
+                    borderColor: 'red',
+                    backgroundColor:'red'
+                },
+                {
+                    label: 'Y',
+                    data: yValues,
+                    borderColor: 'springGreen',
+                    backgroundColor:'springGreen'
+                },
+                {
+                    label: 'Z',
+                    data: zValues,
+                    borderColor: 'lightSkyBlue',
+                    backgroundColor:'lightSkyBlue'
                 },
             ]
         })
         setChartOptions({
+
             plugins: {
                 legend: {
                     position: 'top',
@@ -52,7 +65,24 @@ const Grafico = () => {
                 title:{
                     display: true,
                     text: 'Positions'
+                },
+            },
+            elements: {
+                line: {
+                    borderWidth: 4,
+                },
+                point: {
+                    radius: 0,
+                    hitRadius: 5,
                 }
+            },
+            scales: {
+                xAxis: {
+                    display: false,
+                },
+                yAxis: {
+                    display: false,
+                },
             },
             maintainAspectRatio: false,
             responsive: true

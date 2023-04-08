@@ -55,7 +55,7 @@ onValue(dbRef, (snapshot) => {
       if (snapshot.exists()) {
         
         timestampValues[i] = snapshot.val();
-        console.log(timestampValues[i]);
+        // console.log(timestampValues[i]);
         //i++;
       } else {
         console.log("No data available");
@@ -67,7 +67,7 @@ onValue(dbRef, (snapshot) => {
       if (snapshot.exists()) {
         
         xValues[i] = snapshot.val();
-        console.log(xValues[i]);
+        // console.log(xValues[i]);
         //i++;
       } else {
         console.log("No data available");
@@ -79,7 +79,7 @@ onValue(dbRef, (snapshot) => {
       if (snapshot.exists()) {
         
         yValues[i] = snapshot.val();
-        console.log(yValues[i]);
+        // console.log(yValues[i]);
         //i++;
       } else {
         console.log("No data available");
@@ -91,7 +91,7 @@ onValue(dbRef, (snapshot) => {
       if (snapshot.exists()) {
         
         zValues[i] = snapshot.val();
-        console.log(zValues[i]);
+        // console.log(zValues[i]);
         //i++;
       } else {
         console.log("No data available");
