@@ -11,7 +11,7 @@ import {
     Legend,
     Filler,
 } from "chart.js";
-import { timestampValues, xValues, yValues, zValues } from "@/pages/database";
+import { timestampValues, yValues } from "@/pages/database";
 
 ChartJS.register(
     CategoryScale,
@@ -24,7 +24,7 @@ ChartJS.register(
     Filler,
 );
 
-const Grafico = () => {
+const YChart = () => {
 
     const [chartData, setChartData] = useState({
         datasets: []
@@ -37,22 +37,10 @@ const Grafico = () => {
             labels: timestampValues,
             datasets:[
                 {
-                    label: 'X',
-                    data: xValues,
-                    borderColor: 'red',
-                    backgroundColor:'red'
-                },
-                {
                     label: 'Y',
                     data: yValues,
                     borderColor: 'springGreen',
                     backgroundColor:'springGreen'
-                },
-                {
-                    label: 'Z',
-                    data: zValues,
-                    borderColor: 'lightSkyBlue',
-                    backgroundColor:'lightSkyBlue'
                 },
             ]
         })
@@ -60,20 +48,20 @@ const Grafico = () => {
 
             plugins: {
                 legend: {
-                    position: 'top',
+                    display: false
                 },
                 title:{
                     display: true,
-                    text: 'Positions'
+                    text: 'Y axis'
                 },
             },
             elements: {
                 line: {
-                    borderWidth: 4,
+                    borderWidth: 2,
                 },
                 point: {
                     radius: 0,
-                    hitRadius: 5,
+                    hitRadius: 3,
                 }
             },
             scales: {
@@ -90,10 +78,10 @@ const Grafico = () => {
     }, [])
 
     return (
-        <div className="w-full md:col-span-3 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
+        <div className="w-full md:col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
             <Line data={chartData} options={chartOptions} />
         </div>
     )
 }
 
-export default Grafico
+export default YChart
