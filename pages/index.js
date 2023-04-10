@@ -4,9 +4,9 @@ import Image from 'next/image'
 import Header from '../components/Header'
 import Chart from '../components/Grafico'
 import DataRefresh from '../components/DataRefresh'
-import XChart from '../components/XChart'
-import YChart from '../components/YChart'
-import ZChart from '../components/ZChart'
+
+import IndCharts from '@/components/IndCharts'
+//import FloatingCharts from '@/components/floatingCharts'
 
 import DashboardSWR from './swrdashboard.js'
 
@@ -19,7 +19,7 @@ export default function Home() {
 
 const [intervalTime, setIntervalTime] = useState(2);
 
-const {timeStamps, xValues, yValues,  zValues} = DashboardSWR(intervalTime)
+const {seconds, timeStamps, xValues, yValues,  zValues} = DashboardSWR(intervalTime)
 
   return (
     <>
@@ -32,14 +32,11 @@ const {timeStamps, xValues, yValues,  zValues} = DashboardSWR(intervalTime)
       <main className='bg-blue-100 min-h-screen'>
         <Header /> 
         <div className='p-8 grid md:grid-cols-4 grid-cols-1 gap-4'>
-          <Chart timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
+          <Chart seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
           <DataRefresh intervalTime={intervalTime} setIntervalTime={setIntervalTime}/>
         </div>
-        <div className='p-8 grid md:grid-cols-3 grid-cols-1 gap-8'>
-          <XChart timestamps={timeStamps} xValues={xValues}/>
-          <YChart timestamps={timeStamps} yValues={yValues}/>
-          <ZChart timestamps={timeStamps} zValues={zValues}/>
-        </div>
+          <IndCharts seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
+          {/* <FloatingCharts seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/> */}
       </main>
     </>
   )

@@ -24,7 +24,7 @@ ChartJS.register(
     Filler,
 );
 
-const Grafico = ({timestamps, xValues, yValues, zValues}) => {
+const Grafico = ({seconds, timestamps, xValues, yValues, zValues}) => {
   const [chartData, setChartData] = useState({
     datasets: []
   });
@@ -33,7 +33,7 @@ const Grafico = ({timestamps, xValues, yValues, zValues}) => {
 
     useEffect(() =>{
         setChartData({
-            labels: timestamps,
+            labels: seconds,
             datasets:[
                 {
                     label: 'X',

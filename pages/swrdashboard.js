@@ -17,14 +17,23 @@ function DashboardSWR(intervalTime) {
 
     const dados = Object.values(data.accel)
 
+    let seconds = []
     let timeStamps = []
     let xValues = []
     let yValues = []
     let zValues = []
   
   
-    dados.forEach(function (i){
-  
+    dados.forEach(function (i, index){
+
+      var second
+      if(index == 0){
+        seconds.push(0)
+      }
+      else{
+        second = i.timestamp - dados[0].timestamp
+        seconds.push(Number(second.toFixed(2)))
+      }
       timeStamps.push(i.timestamp)
       xValues.push(i.x)
       yValues.push(i.y)
@@ -35,6 +44,7 @@ function DashboardSWR(intervalTime) {
     //console.log(timeStamps[0])
   
     return {
+      seconds,
       timeStamps,
       xValues,
       yValues,
