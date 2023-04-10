@@ -99,7 +99,8 @@ const IndCharts = ({seconds, timestamps, xValues, yValues, zValues}) => {
                     display: false,
                 },
                 yAxis: {
-                    display: false,
+                    display: true,
+                    beginAtZero: false
                 },
             },
             maintainAspectRatio: false,

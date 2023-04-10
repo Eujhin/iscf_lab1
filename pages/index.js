@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Header from '../components/Header'
 import Chart from '../components/Grafico'
 import DataRefresh from '../components/DataRefresh'
+import Alarms from '@/components/alarms'
 
 import IndCharts from '@/components/IndCharts'
 //import FloatingCharts from '@/components/floatingCharts'
@@ -34,6 +35,7 @@ const {seconds, timeStamps, xValues, yValues,  zValues} = DashboardSWR(intervalT
         <div className='p-8 grid md:grid-cols-4 grid-cols-1 gap-4'>
           <Chart seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
           <DataRefresh intervalTime={intervalTime} setIntervalTime={setIntervalTime}/>
+          {/* <Alarms /> */}
         </div>
           <IndCharts seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
           {/* <FloatingCharts seconds={seconds} timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/> */}
