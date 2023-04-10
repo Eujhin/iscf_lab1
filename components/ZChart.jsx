@@ -31,7 +31,7 @@ const ZChart = ({timestamps, zValues}) => {
 
   const [chartOptions, setChartOptions] = useState({});
 
-  console.log(timestamps)
+  //console.log(timestamps)
 
     useEffect(() => {
         setChartData({

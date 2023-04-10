@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-
-const DataRefresh = () => {
-
-    const [intervalTime, setCount] = useState(0);
+const DataRefresh = ( {intervalTime, setIntervalTime} ) => {
 
     const incFunc = () => {
-        setCount(intervalTime + 1)
+        setIntervalTime(intervalTime + 1)
     };
     const decFunc = () => {
-        setCount(intervalTime - 1)
+        if (intervalTime > 0){
+            setIntervalTime(intervalTime - 1)
+        }
     };
 
     return (

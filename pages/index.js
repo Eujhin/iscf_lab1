@@ -10,10 +10,16 @@ import ZChart from '../components/ZChart'
 
 import DashboardSWR from './swrdashboard.js'
 
+import React, { useState } from "react";
+
 export default function Home() {
 
-const {timeStamps, xValues, yValues,  zValues} = DashboardSWR()
-console.log(xValues)
+
+//console.log(xValues)
+
+const [intervalTime, setIntervalTime] = useState(2);
+
+const {timeStamps, xValues, yValues,  zValues} = DashboardSWR(intervalTime)
 
   return (
     <>
@@ -27,7 +33,7 @@ console.log(xValues)
         <Header /> 
         <div className='p-8 grid md:grid-cols-4 grid-cols-1 gap-4'>
           <Chart timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
-          <DataRefresh />
+          <DataRefresh intervalTime={intervalTime} setIntervalTime={setIntervalTime}/>
         </div>
         <div className='p-8 grid md:grid-cols-3 grid-cols-1 gap-8'>
           <XChart timestamps={timeStamps} xValues={xValues}/>

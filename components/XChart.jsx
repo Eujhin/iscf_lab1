@@ -31,7 +31,7 @@ const XChart = ({timestamps, xValues}) => {
 
   const [chartOptions, setChartOptions] = useState({});
 
-  console.log(timestamps)
+  //console.log(timestamps)
 
     useEffect(() => {
         setChartData({

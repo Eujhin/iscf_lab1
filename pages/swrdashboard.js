@@ -7,8 +7,10 @@ const fetcher = async () => {
     return data
 }
 
-function DashboardSWR() {
-    const { data, error } = useSWR('dashboard', fetcher, { refreshInterval: 5000 })
+function DashboardSWR(intervalTime) {
+
+    console.log("interval time" + intervalTime)
+    const { data, error } = useSWR('dashboard', fetcher, { refreshInterval: intervalTime*1000 })
 
     if(error) return 'Error occured'
     if(!data) return 'Loading'
