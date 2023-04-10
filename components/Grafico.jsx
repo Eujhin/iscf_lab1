@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +12,6 @@ import {
     Legend,
     Filler,
 } from "chart.js";
-import { timestampValues, xValues, yValues, zValues } from "@/pages/database";
 
 ChartJS.register(
     CategoryScale,
@@ -24,17 +24,16 @@ ChartJS.register(
     Filler,
 );
 
-const Grafico = () => {
+const Grafico = ({timestamps, xValues, yValues, zValues}) => {
+  const [chartData, setChartData] = useState({
+    datasets: []
+  });
 
-    const [chartData, setChartData] = useState({
-        datasets: []
-    });
-
-    const [chartOptions, setChartOptions] = useState({});
+  const [chartOptions, setChartOptions] = useState({});
 
     useEffect(() =>{
         setChartData({
-            labels: timestampValues,
+            labels: timestamps,
             datasets:[
                 {
                     label: 'X',
@@ -87,7 +86,7 @@ const Grafico = () => {
             maintainAspectRatio: false,
             responsive: true
         })
-    }, [])
+    }, [timestamps])
 
     return (
         <div className="w-full md:col-span-3 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">

@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +12,6 @@ import {
     Legend,
     Filler,
 } from "chart.js";
-import { timestampValues, zValues } from "@/pages/database";
 
 ChartJS.register(
     CategoryScale,
@@ -24,35 +24,37 @@ ChartJS.register(
     Filler,
 );
 
-const ZChart = () => {
+const ZChart = ({timestamps, zValues}) => {
+  const [chartData, setChartData] = useState({
+    datasets: []
+  });
 
-    const [chartData, setChartData] = useState({
-        datasets: []
-    });
+  const [chartOptions, setChartOptions] = useState({});
 
-    const [chartOptions, setChartOptions] = useState({});
+  console.log(timestamps)
 
-    useEffect(() =>{
+    useEffect(() => {
         setChartData({
-            labels: timestampValues,
-            datasets:[
-                {
-                    label: 'Z',
-                    data: zValues,
-                    borderColor: 'lightSkyBlue',
-                    backgroundColor:'lightSkyBlue'
-                },
-            ]
-        })
+            labels: timestamps,
+            datasets: [
+            {
+                label: "X",
+                data: zValues,
+                borderColor: 'lightSkyBlue',
+                backgroundColor:'lightSkyBlue',
+            },
+            ],
+        });
+
         setChartOptions({
 
             plugins: {
                 legend: {
-                    display: false,
+                    display: false
                 },
                 title:{
                     display: true,
-                    text: 'Z Axis'
+                    text: 'Z axis'
                 },
             },
             elements: {
@@ -75,13 +77,14 @@ const ZChart = () => {
             maintainAspectRatio: false,
             responsive: true
         })
-    }, [])
 
-    return (
-        <div className="w-full md:col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
-            <Line data={chartData} options={chartOptions} />
-        </div>
-    )
-}
+    }, [timestamps]);
 
-export default ZChart
+  return (
+      <div className="w-full md:col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
+        <Line data={chartData} options={chartOptions} />
+      </div>
+  );
+};
+
+export default ZChart;

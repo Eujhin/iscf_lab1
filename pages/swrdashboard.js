@@ -30,17 +30,15 @@ function DashboardSWR() {
   
     });
   
-    //console.log(timeStamps)
+    //console.log(timeStamps[0])
   
-    return (
-  
-      <div>
-        { timeStamps[0] }
-      </div>
-      
-    )
+    return {
+      timeStamps,
+      xValues,
+      yValues,
+      zValues
+    }
+    
   }
-        
-
-
+      
 export default DashboardSWR

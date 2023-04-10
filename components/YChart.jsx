@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +12,6 @@ import {
     Legend,
     Filler,
 } from "chart.js";
-import { timestampValues, yValues } from "@/pages/database";
 
 ChartJS.register(
     CategoryScale,
@@ -24,26 +24,26 @@ ChartJS.register(
     Filler,
 );
 
-const YChart = () => {
+const YChart = ({timestamps, yValues}) => {
+  const [chartData, setChartData] = useState({
+    datasets: []
+  });
 
-    const [chartData, setChartData] = useState({
-        datasets: []
-    });
+  const [chartOptions, setChartOptions] = useState({});
 
-    const [chartOptions, setChartOptions] = useState({});
-
-    useEffect(() =>{
+    useEffect(() => {
         setChartData({
-            labels: timestampValues,
-            datasets:[
-                {
-                    label: 'Y',
-                    data: yValues,
-                    borderColor: 'springGreen',
-                    backgroundColor:'springGreen'
-                },
-            ]
-        })
+            labels: timestamps,
+            datasets: [
+            {
+                label: "X",
+                data: yValues,
+                borderColor: 'springGreen',
+                backgroundColor:'springGreen',
+            },
+            ],
+        });
+
         setChartOptions({
 
             plugins: {
@@ -75,13 +75,14 @@ const YChart = () => {
             maintainAspectRatio: false,
             responsive: true
         })
-    }, [])
 
-    return (
-        <div className="w-full md:col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
-            <Line data={chartData} options={chartOptions} />
-        </div>
-    )
-}
+    }, [timestamps]);
 
-export default YChart
+  return (
+      <div className="w-full md:col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white">
+        <Line data={chartData} options={chartOptions} />
+      </div>
+  );
+};
+
+export default YChart;

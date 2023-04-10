@@ -8,7 +8,13 @@ import XChart from '../components/XChart'
 import YChart from '../components/YChart'
 import ZChart from '../components/ZChart'
 
+import DashboardSWR from './swrdashboard.js'
+
 export default function Home() {
+
+const {timeStamps, xValues, yValues,  zValues} = DashboardSWR()
+console.log(xValues)
+
   return (
     <>
       <Head>
@@ -20,13 +26,13 @@ export default function Home() {
       <main className='bg-blue-100 min-h-screen'>
         <Header /> 
         <div className='p-8 grid md:grid-cols-4 grid-cols-1 gap-4'>
-          <Chart />
+          <Chart timestamps={timeStamps} xValues={xValues} yValues={yValues} zValues={zValues}/>
           <DataRefresh />
         </div>
         <div className='p-8 grid md:grid-cols-3 grid-cols-1 gap-8'>
-          <XChart />
-          <YChart />
-          <ZChart />
+          <XChart timestamps={timeStamps} xValues={xValues}/>
+          <YChart timestamps={timeStamps} yValues={yValues}/>
+          <ZChart timestamps={timeStamps} zValues={zValues}/>
         </div>
       </main>
     </>
